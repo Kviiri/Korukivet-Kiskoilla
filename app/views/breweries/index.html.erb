@@ -20,6 +20,7 @@
         <td><%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <p>Amount of breweries: <%= Brewery.count %></p>
   </tbody>
 </table>
 
