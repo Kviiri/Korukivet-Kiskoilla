@@ -9,13 +9,17 @@
 </p>
 
 <p>
-  Proud manufacturer of <%= @brewery.beers.count %> beers:
+  Proud manufacturer of <%= @brewery.beers.count %> beers, with <%=pluralize(@brewery.ratings.count, 'rating')%><% if @brewery.ratings.empty?%>.<% else %> and an average score of <%= @brewery.average_rating %>.<% end %>
 </p>
 
 <p>
+  <ul>
   <% @brewery.beers.each do |beer| %>
-   <%= link_to beer.name, beer %>
+  <li>
+   <%= link_to beer.name, beer %> (<% if beer.ratings.empty? %>unrated<% else %>Score: <%=beer.average_rating%><%end%>)
  <% end %>
+ </li>
+ </ul>
 </p>
 
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
