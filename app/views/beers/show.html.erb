@@ -17,3 +17,10 @@
 
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <%= link_to 'Back', beers_path %>
+
+<p>This <% if @beer.ratings.empty? %>
+ beer has not yet been rated!
+<% else %>
+ beer has <%=@beer.ratings.count %> ratings, average <%= @beer.average_rating %>.
+<% end %>
+</p>
