@@ -4,6 +4,6 @@ Number of ratings: <%= @ratings.count %> (<%= link_to "Rate 'em!", new_rating_pa
 
 <ul>
  <% @ratings.each do |rating| %>
-   <li> <%= rating %> </li>
+   <li> <%= rating %> <%= link_to 'delete', rating_path(rating.id), method: :delete %> </li> 
  <% end %>
 </ul>
