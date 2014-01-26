@@ -1,6 +1,6 @@
 <h2>List of ratings</h2>
 
-Number of ratings: <%= @ratings.count %> (<%= link_to "Rate 'em!", ratings_new_path%>)
+Number of ratings: <%= @ratings.count %> (<%= link_to "Rate 'em!", new_rating_path%>)
 
 <ul>
  <% @ratings.each do |rating| %>
