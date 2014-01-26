@@ -6,6 +6,6 @@ class RatingsController < ApplicationController
     @rating = Rating.new
   end
   def create
-    raise
+    Rating.create params.require(:rating).permit(:score, :beer_id)
   end
 end
