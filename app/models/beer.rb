@@ -10,4 +10,7 @@ class Beer < ActiveRecord::Base
     #sum / ratings.count
     ratings.inject(0) { |sum, r| sum += r.score} / ratings.count 
   end
+  def to_s
+    name + " (" + brewery.name + ")"
+  end
 end
