@@ -1,4 +1,5 @@
 class Brewery < ActiveRecord::Base
+  include RatingAverage
   has_many :beers, dependent: :destroy #dem colons
   has_many :ratings, through: :beers   #such majick wow, very ruby
   def to_s
