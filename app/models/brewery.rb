@@ -5,7 +5,11 @@ class Brewery < ActiveRecord::Base
   def to_s
     name
   end
-  def average_rating
-    ratings.inject(0) { |sum, r| sum += r.score } / ratings.count
+
+   def print_report
+     puts name
+     puts "established at year #{year}"
+     puts "number of beers #{beers.count}"
+     puts "number of ratings #{ratings.count}"
   end
 end
