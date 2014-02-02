@@ -12,7 +12,7 @@
     <%= link_to 'beers', beers_path %>
     <%= link_to 'ratings', ratings_path %>
     <% if not current_user.nil? %>
-      <p><%= current_user.username %> signed in</p>
+      <p><%= current_user.username %> signed in (<%= link_to 'sign out', sessions_path, method: :delete, data: { confirm: 'Log out?' } %>)</p>
     <% else %>
       <p>not signed in (sign in <%= link_to 'here', new_session_path %>)</p>
     <% end %>
