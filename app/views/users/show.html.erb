@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
+<small><%= link_to 'Destroy user', @user, method: :delete, data: { confirm: 'Are you sure?' } %></small>
 
 <p>
-  <b><%= @user.username %></b> has made <%= pluralize(@ratings.count, 'rating') %> (average rating: <%= @user.average_rating %>):
+  <b><%= @user.username %></b> has made <%= pluralize(@ratings.count, 'rating') %>
+
+<% if @ratings.count != 0 %> (average rating: <%= @user.average_rating %>) <% end %>
+
 </p>
 
 <p>
