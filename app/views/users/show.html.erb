@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<small><%= link_to 'Destroy user', @user, method: :delete, data: { confirm: 'Are you sure?' } %></small>
+<small><% if @user == current_user %> <%= link_to 'Destroy user', @user, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></small>
 
 <p>
   <b><%= @user.username %></b> has made <%= pluralize(@ratings.count, 'rating') %>
@@ -25,5 +25,5 @@
     <% end %>
   </ul>
 </p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user == current_user %><%= link_to 'Edit', edit_user_path(@user) %> |<% end %>
 <%= link_to 'Back', users_path %>
