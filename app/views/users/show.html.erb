@@ -4,11 +4,22 @@
   <b><%= @user.username %></b> has made <%= pluralize(@ratings.count, 'rating') %> (average rating: <%= @user.average_rating %>):
 </p>
 
-<ul>
-  <% @ratings.each do |r| %>
-    <li><%= r.to_s %> <%= link_to 'delete', rating_path(r.id), method: :delete, data: { confirm: "Are you sure you want to delete rating #{r.to_s}?"}%> </li>
-  <% end %>
-</ul>
+<p>
+  <strong>Club memberships</strong>
+  <ul>
+    <% @user.beer_clubs.each do |c| %>
+      <li><%= c %> </li>
+    <% end %>
+  </ul>
+</p>
 
+<p>
+  <strong>Beer ratings</strong>
+  <ul>
+    <% @ratings.each do |r| %>
+    <li><%= r.to_s %> <%= link_to 'delete', rating_path(r.id), method: :delete, data: { confirm: "Are you sure you want to delete rating #{r.to_s}?"}%> </li>
+    <% end %>
+  </ul>
+</p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
