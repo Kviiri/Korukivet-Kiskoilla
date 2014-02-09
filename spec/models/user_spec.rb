@@ -29,14 +29,21 @@ describe User do
       expect(user.average_rating).to eq(15.0)
     end
   end
-
+  
   it "is not saved with a password with only letters in it" do
     User.create username:"Pekka", password:"asdasd", password_confirmation:"asdasd"
     expect(User.count).to eq(0)
   end
-
-  it "has a method for determining the favorite_beer" do
-    user = FactoryGirl.create(:user)
-    user.should respond_to :favorite_beer
+  
+  describe "favorite beer" do
+    let(:user) { FactoryGirl.create(:user) }
+   
+    it "has a method for determining one" do
+         user.should respond_to :favorite_beer
+    end
+    
+    it "without ratings does not have one" do
+       expect(user.favorite_beer).to eq(nil)
+    end
   end
 end
