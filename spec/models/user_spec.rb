@@ -69,4 +69,19 @@ describe User do
       expect(user.favorite_beer).to eq(beer)
     end 
   end
+
+  describe "favorite style" do
+    let(:user) { FactoryGirl.create(:user) }
+    it "has a method for determining one" do
+      user.should respond_to :favorite_beer
+    end
+    it "shouldn't have one before any ratings" do
+      user.favorite_style.should == nil
+    end
+    it "should be the style of the only rated beer" do
+      beer = FactoryGirl.create(:beer, style: "IPA")
+      rating = FactoryGirl.create(:rating, beer:beer, user:user)
+      expect user.favorite_style.should == beer.style
+    end
+  end
 end

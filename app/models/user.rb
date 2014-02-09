@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
   end
 
   def favorite_style
-    u.beers.group("style").average("score").max_by{|k,v| v}
+    return nil if ratings.empty?
+    beers.group("style").average("score").max_by{|k,v| v}.first
   end
 
   def password_format_is_correct
