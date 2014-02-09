@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   def favorite_beer
     return nil if ratings.empty?
-    ratings.first.beer
+    ratings.sort_by(&:score).last.beer
   end
 
   def password_format_is_correct
