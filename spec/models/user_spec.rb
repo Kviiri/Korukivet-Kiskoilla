@@ -83,5 +83,53 @@ describe User do
       rating = FactoryGirl.create(:rating, beer:beer, user:user)
       expect user.favorite_style.should == beer.style
     end
+    it "should be the better rated of two styles" do
+      beer1 = FactoryGirl.create(:beer, style: "IPA")
+      beer2 = FactoryGirl.create(:beer, style: "IPA")
+      beer3 = FactoryGirl.create(:beer, style: "IPA")
+      beer4 = FactoryGirl.create(:beer, style: "Weizen")
+      beer5 = FactoryGirl.create(:beer, style: "Weizen")
+      beer6 = FactoryGirl.create(:beer, style: "Weizen")
+      FactoryGirl.create(:rating, beer:beer1, user:user, score: 20)
+      FactoryGirl.create(:rating, beer:beer2, user:user, score: 40)
+      FactoryGirl.create(:rating, beer:beer3, user:user, score: 40)
+      FactoryGirl.create(:rating, beer:beer4, user:user, score: 45)
+      FactoryGirl.create(:rating, beer:beer5, user:user, score: 5)
+      FactoryGirl.create(:rating, beer:beer6, user:user, score: 5)
+      expect user.favorite_style.should == "IPA"
+    end
+  end
+
+  describe "favorite brewery" do
+    let(:user) { FactoryGirl.create(:user) }
+    it "has a method for determining one" do
+      user.should respond_to :favorite_brewery
+    end
+    it "shouldn't have one before any ratings" do
+      user.favorite_brewery.should == nil
+    end
+    it "should be the brewery of the only rated beer" do
+      brewery = FactoryGirl.create(:brewery)
+      beer = FactoryGirl.create(:beer, brewery:brewery)
+      rating = FactoryGirl.create(:rating, beer:beer, user:user)
+      expect user.favorite_brewery.should == brewery.id
+    end
+    it "should be the better rated of two breweries" do
+      brewery1 = FactoryGirl.create(:brewery)
+      brewery2 = FactoryGirl.create(:brewery)
+      beer1 = FactoryGirl.create(:beer, brewery: brewery1)
+      beer2 = FactoryGirl.create(:beer, brewery: brewery1)
+      beer3 = FactoryGirl.create(:beer, brewery: brewery1)
+      beer4 = FactoryGirl.create(:beer, brewery: brewery2)
+      beer5 = FactoryGirl.create(:beer, brewery: brewery2)
+      beer6 = FactoryGirl.create(:beer, brewery: brewery2)
+      FactoryGirl.create(:rating, beer:beer1, user:user, score: 20)
+      FactoryGirl.create(:rating, beer:beer2, user:user, score: 40)
+      FactoryGirl.create(:rating, beer:beer3, user:user, score: 40)
+      FactoryGirl.create(:rating, beer:beer4, user:user, score: 45)
+      FactoryGirl.create(:rating, beer:beer5, user:user, score: 5)
+      FactoryGirl.create(:rating, beer:beer6, user:user, score: 5)
+      expect user.favorite_brewery.should == brewery1.id
+    end
   end
 end

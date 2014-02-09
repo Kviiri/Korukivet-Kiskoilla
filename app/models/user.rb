@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
     beers.group("style").average("score").max_by{|k,v| v}.first
   end
 
+  def favorite_brewery
+    return nil if ratings.empty?
+    beers.group("brewery_id").average("score").max_by{|k,v| v}.first
+  end
+
   def password_format_is_correct
     unless password =~ /[A-Z]/ && password =~ /[0-9]/
         errors.add(:password, "must contain a capital letter and a number")
