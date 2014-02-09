@@ -34,4 +34,9 @@ describe User do
     User.create username:"Pekka", password:"asdasd", password_confirmation:"asdasd"
     expect(User.count).to eq(0)
   end
+
+  it "has a method for determining the favorite_beer" do
+    user = FactoryGirl.create(:user)
+    user.should respond_to :favorite_beer
+  end
 end

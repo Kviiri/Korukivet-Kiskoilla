@@ -16,6 +16,9 @@ class User < ActiveRecord::Base
     "#{username}"
   end
 
+  def favorite_beer
+  end
+
   def password_format_is_correct
     unless password =~ /[A-Z]/ && password =~ /[0-9]/
         errors.add(:password, "must contain a capital letter and a number")
