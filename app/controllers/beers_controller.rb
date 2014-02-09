@@ -11,7 +11,6 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
-    
   end
 
   # GET /beers/new
