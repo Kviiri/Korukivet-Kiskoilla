@@ -45,5 +45,15 @@ describe User do
     it "without ratings does not have one" do
        expect(user.favorite_beer).to eq(nil)
     end
+    it "is the one with highest rating if several rated" do
+      beer1 = FactoryGirl.create(:beer)
+      beer2 = FactoryGirl.create(:beer)
+      beer3 = FactoryGirl.create(:beer)
+      rating1 = FactoryGirl.create(:rating, beer:beer1, user:user)
+      rating2 = FactoryGirl.create(:rating, score:25,  beer:beer2, user:user)
+      rating3 = FactoryGirl.create(:rating, score:9, beer:beer3, user:user)
+      
+      expect(user.favorite_beer).to eq(beer2)
+    end
   end
 end
