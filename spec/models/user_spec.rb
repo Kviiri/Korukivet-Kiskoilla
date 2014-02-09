@@ -26,7 +26,7 @@ describe User do
     expect(user.average_rating).to eq(15.0)
   end
   it "is not saved with a password with only letters in it" do
-    user = User.create username:"Timo", password:"afaf", password_confirmation:"afaf"
-    expect(User.count.to eq(0))
+    User.create username:"Pekka", password:"asdasd", password_confirmation:"asdasd"
+    expect(User.count).to eq(0)
   end
 end
